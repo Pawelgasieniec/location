@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html  lang="pl">
+
+<head>
+
+<title>Mapa</title>
+
+</head>
+<body >
+    <h1>Mapa</h1>
+    
+    <script>
+
+        function main() {
+            var map = initMap();
+            var markers = [];
+
+            addMarker(map, 52.25068, 20.84772, "Błędkowski", markers);
+            addAdditionalMarker(map, 52.250509, 20.847786, "G")
+
+            setupMap({ map, markers });
+        }
+
+        document.addEventListener("DOMContentLoaded", main);
+    </script>
+    <script src="simple-osm-map.js"></script>
+</body>
+
+</html>

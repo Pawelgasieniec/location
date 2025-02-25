@@ -1,0 +1,7 @@
+#map { height: 500px; }
+
+.additional-marker-div-icon {
+    font-weight: bold;
+    color: black;
+    font-size: 125%;
+}
