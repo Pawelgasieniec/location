@@ -11,9 +11,7 @@ function initMap() {
 
 function setupMap(data) {
     var markerGroup = new L.featureGroup(data.markers);
-
     data.map.fitBounds(markerGroup.getBounds());
-    watchId = navigator.geolocation.watchPosition(moveSecondMarker, error, geoLocationOptions);
 }
 
 function addMarker(map, lat, lon, title, markers) {
@@ -36,14 +34,16 @@ function addAdditionalMarker(pos){
     // addAdditionalMarker(map, crd.latitude, crd.longitude, "G", markers);
     var icon = L.divIcon({
         className: 'additional-marker-div-icon',
-        html: name
+        html: 'A'
     });
 
     var m = L.marker([crd.latitude, crd.longitude], { icon: icon })
         .addTo(map);
     markers.push(m);
-    console.log("Added second marker at " + markers[1].getLatLng());
+    watchId = navigator.geolocation.watchPosition(moveSecondMarker, error, geoLocationOptions);
     trasa = L.polyline([targetMarker.getLatLng(), m.getLatLng()], lineOptions).addTo(map);
+    setupMap({ map, markers });
+    console.log("Added second marker at " + markers[1].getLatLng());
     return m;
 }
 
@@ -55,6 +55,7 @@ function moveSecondMarker(pos) {
         var newPos = L.latLng(crd.latitude, crd.longitude)
         marker2.setLatLng(newPos);
         trasa.setLatLngs([markers[0].getLatLng(), markers[1].getLatLng()]).redraw();
+        // setupMap({ map, markers });
         console.log("Moved from " + marker2.getLatLng() + " to: " + newPos);
     } else {
         console.log("No second marker yet?");
@@ -81,7 +82,7 @@ geoLocationOptions = {
 };
 
 lineOptions = {
-    color: '#ff0000'
+    color: '#000000'
 }
 
 var markers = [];

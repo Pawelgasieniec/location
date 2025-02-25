@@ -150,9 +150,8 @@
 
     <script>
         function main() {
-            targetMarker = addMarker(map, target.latitude, target.longitude, "BÄdkowski", markers);
-            navigator.geolocation.getCurrentPosition(addAdditionalMarker, error)
-            setupMap({ map, markers });
+            targetMarker = addMarker(map, target.latitude, target.longitude, "Bedkowski", markers);
+            navigator.geolocation.getCurrentPosition(addAdditionalMarker, error);
         }
 
         document.addEventListener("DOMContentLoaded", main);
