@@ -9,29 +9,29 @@ function initMap() {
     return map;
 }
 
-function setupMap(data) {
+function fitMapBounds(data) {
     var markerGroup = new L.featureGroup(data.markers);
     data.map.fitBounds(markerGroup.getBounds());
 }
 
 function addMarker(map, lat, lon, title, markers) {
     var marker = L.marker([lat, lon])
-        //.bindPopup(title)
-        //.openPopup()
         .addTo(map);
-
-    L.tooltip({ permanent: true })
-        .setContent(title)
-        .setLatLng([lat, lon])
-        .addTo(map);
+    tooltip = marker.bindTooltip(title, { permanent: true }).openTooltip();
+    // L.tooltip({ permanent: true })
+    //     .setContent(title)
+    //     .setLatLng([lat, lon])
+    //     .addTo(map);
     markers.push(marker);
+    var latInput = document.getElementById("latitude");
+    var lngInput = document.getElementById("longitude");
+    latInput.value = target.latitude;
+    lngInput.value = target.longitude;
     return marker;
 }
 
 function addAdditionalMarker(pos){
     const crd = pos.coords;
-    // addAdditionalMarker(map, 52.250509, 20.847786, "G", markers);
-    // addAdditionalMarker(map, crd.latitude, crd.longitude, "G", markers);
     var icon = L.divIcon({
         className: 'additional-marker-div-icon',
         html: 'A'
@@ -42,7 +42,7 @@ function addAdditionalMarker(pos){
     markers.push(m);
     watchId = navigator.geolocation.watchPosition(moveSecondMarker, error, geoLocationOptions);
     trasa = L.polyline([targetMarker.getLatLng(), m.getLatLng()], lineOptions).addTo(map);
-    setupMap({ map, markers });
+    fitMapBounds({ map, markers });
     console.log("Added second marker at " + markers[1].getLatLng());
     return m;
 }
@@ -55,7 +55,9 @@ function moveSecondMarker(pos) {
         var newPos = L.latLng(crd.latitude, crd.longitude)
         marker2.setLatLng(newPos);
         trasa.setLatLngs([markers[0].getLatLng(), markers[1].getLatLng()]).redraw();
-        // setupMap({ map, markers });
+        fitMapBounds({ map, markers });
+        var userPosParagraph = document.getElementById("userPosition");
+        userPosParagraph.textContent = crd.latitude.toString() + "; " + crd.longitude.toString();
         console.log("Moved from " + marker2.getLatLng() + " to: " + newPos);
     } else {
         console.log("No second marker yet?");
@@ -70,13 +72,23 @@ function error(err) {
     console.error(`ERROR(${err.code}): ${err.message}`);
 }
 
+function updateTargetCoordinates(){
+    target.latitude = document.forms["targetCoordForm"]["latitude"].value;
+    target.longitude = document.forms["targetCoordForm"]["longitude"].value;
+    markers[0].setLatLng([target.latitude, target.longitude])
+    trasa.setLatLngs([markers[0].getLatLng(), markers[1].getLatLng()]).redraw();
+    fitMapBounds({ map, markers });
+    console.log("Set target to " + target.latitude + ' - ' + target.longitude);
+    return true;
+}
+
 target = {
     latitude: 52.25068,
     longitude: 20.84772,
 };
 
 geoLocationOptions = {
-    enableHighAccuracy: false,
+    enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0,
 };
@@ -88,5 +100,6 @@ lineOptions = {
 var markers = [];
 var trasa;
 var watchId;
+var tooltip;
 var map = initMap();
 document.addEventListener("DOMContentLoaded", main);

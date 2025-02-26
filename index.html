@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pl">
+<meta charset="UTF-8"> 
 <head>
+    <title></title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="stylesheet" href="simple-osm-map.css">
@@ -147,10 +148,24 @@
             </div>
         </div>
     </div>
-
+    <div>
+        <h2>Ustaw współrzędne celu</h2>
+        <form name="targetCoordForm" onsubmit="event.preventDefault(); updateTargetCoordinates();">
+            <label for="latitude">Latitude:</label><br>
+            <input type="number" id="latitude" name="latitude" min="-360" max="360" , step="0.0000001"><br>
+            <label for="longitude">Longitude:</label><br>
+            <input type="number" id="longitude" name="longitude" min="-360" max="360" , step="0.0000001"><br><br>
+            <input type="submit" value="Ustaw">
+        </form>
+    </div>
+    <div>
+        <p>Twoja lokalizacja:
+        </p>
+        <p id="userPosition"></p>
+    </div>
     <script>
         function main() {
-            targetMarker = addMarker(map, target.latitude, target.longitude, "Bedkowski", markers);
+            targetMarker = addMarker(map, target.latitude, target.longitude, "Będkowski", markers);
             navigator.geolocation.getCurrentPosition(addAdditionalMarker, error);
         }
 
