@@ -1,0 +1,7 @@
+1. parametry do podstron z mapą
+2. parametry do podstron z trasą
+3. szkielet bazy danych
+4. Rejestracja przybycia: https://graedu.pl/content/9563.html
+
+Wysłać bieżące rozwiązanie do ręcznego wstawiania
+https://graedu.pl/pgd/admin
