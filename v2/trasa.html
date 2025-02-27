@@ -107,15 +107,15 @@
                     class="leaflet-marker-shadow leaflet-zoom-animated"
                     style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(952px, 250px, 0px);"
                     alt=""></div>
-            <div class="leaflet-pane leaflet-marker-pane"><img
+            <!-- <div class="leaflet-pane leaflet-marker-pane"><img
                     src="https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png"
                     class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive"
                     style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(952px, 250px, 0px); z-index: 250;"
                     alt="Marker" tabindex="0" role="button">
-                <!-- <div class="leaflet-marker-icon additional-marker-div-icon leaflet-zoom-animated leaflet-interactive"
+                <div class="leaflet-marker-icon additional-marker-div-icon leaflet-zoom-animated leaflet-interactive"
                     style="margin-left: -6px; margin-top: -6px; width: 12px; height: 12px; transform: translate3d(977px, 354px, 0px); z-index: 354;"
-                    tabindex="0" role="button">G</div> -->
-            </div>
+                    tabindex="0" role="button">G</div>
+            </div> -->
             <div class="leaflet-pane leaflet-tooltip-pane">
                 <!-- <div class="leaflet-tooltip leaflet-zoom-animated leaflet-tooltip-left" role="tooltip"
                     id="leaflet-tooltip-27" style="opacity: 0.9; transform: translate3d(879px, 234px, 0px);">BÄdkowski
@@ -148,7 +148,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <!-- <div>
         <h2>Ustaw współrzędne celu</h2>
         <form name="targetCoordForm" onsubmit="event.preventDefault(); updateTargetCoordinates();">
             <label for="latitude">Latitude:</label><br>
@@ -157,7 +157,7 @@
             <input type="number" id="longitude" name="longitude" min="-360" max="360" , step="0.0000001"><br><br>
             <input type="submit" value="Ustaw">
         </form>
-    </div>
+    </div> -->
     <div>
         <p>Twoja lokalizacja:
         </p>
@@ -165,8 +165,17 @@
     </div>
     <script>
         function main() {
-            targetMarker = addMarker(map, target.latitude, target.longitude, "Będkowski", markers);
+            const queryString = window.location.search;
+            console.log(queryString);
+            setTargetCoordinatesFromQuery(queryString);
+            // targetMarker = addMarker(map, target.latitude, target.longitude, "Będkowski", markers);
+            // trasa.setLatLngs([markers[0].getLatLng(), markers[1].getLatLng()]).redraw();
+            // fitMapBounds({ map, markers });
+            console.log("Set target to " + target.latitude + ' - ' + target.longitude);
             navigator.geolocation.getCurrentPosition(addAdditionalMarker, error);
+            // trasa.setLatLngs([markers[0].getLatLng(), markers[1].getLatLng()]).redraw();
+            fitMapBounds({ map, markers });
+
         }
 
         document.addEventListener("DOMContentLoaded", main);
