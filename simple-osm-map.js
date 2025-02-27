@@ -2,7 +2,7 @@ function initMap() {
     var map = L.map('map');
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+        maxZoom: 30,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
@@ -64,7 +64,7 @@ function moveSecondMarker(pos) {
     }
     if (target.latitude === crd.latitude && target.longitude === crd.longitude) {
         console.log("Congratulations, you reached the target");
-        navigator.geolocation.clearWatch(watchId);
+        // navigator.geolocation.clearWatch(watchId);
     }
 }
 
