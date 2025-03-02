@@ -50,17 +50,14 @@ function addAdditionalMarker(pos){
 
 function moveSecondMarker(pos) {
     const crd = pos.coords;
-    if (markers && markers.length > 1) {
-        var marker2 = markers[1]
-        var newPos = L.latLng(crd.latitude, crd.longitude)
-        marker2.setLatLng(newPos);
+    var newPos = L.latLng(crd.latitude, crd.longitude)
+    var userPosParagraph = document.getElementById("userPosition");
+    userPosParagraph.textContent = crd.latitude.toString() + "; " + crd.longitude.toString();
+    if (markers && markers.length > 1 && (markers[1].getLatLng().lat != crd.latitude || markers[1].getLatLng().lng != crd.longitude)) {
+        console.log("Moved from " + markers[1].getLatLng() + " to: " + newPos);
+        markers[1].setLatLng(newPos);
         trasa.setLatLngs([markers[0].getLatLng(), markers[1].getLatLng()]).redraw();
         fitMapBounds({ map, markers });
-        var userPosParagraph = document.getElementById("userPosition");
-        userPosParagraph.textContent = crd.latitude.toString() + "; " + crd.longitude.toString();
-        console.log("Moved from " + marker2.getLatLng() + " to: " + newPos);
-    } else {
-        console.log("No second marker yet?");
     }
     if (target.latitude === crd.latitude && target.longitude === crd.longitude) {
         console.log("Congratulations, you reached the target");
