@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <meta charset="UTF-8"> 
+<title>Trasa</title>
 <head>
     <title></title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -11,7 +12,7 @@
 <body>
     <div id="map"
         class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-        style="position: relative; width: 100%;" tabindex="0">
+        style="position: relative; width: 100%;">
     </div>
     <div>
         <p>Twoja lokalizacja:
@@ -23,12 +24,8 @@
             const queryString = window.location.search;
             console.log(queryString);
             setTargetCoordinatesFromQuery(queryString);
-            // targetMarker = addMarker(map, target.latitude, target.longitude, "Będkowski", markers);
-            // trasa.setLatLngs([markers[0].getLatLng(), markers[1].getLatLng()]).redraw();
-            // fitMapBounds({ map, markers });
             console.log("Set target to " + target.latitude + ' - ' + target.longitude);
             navigator.geolocation.getCurrentPosition(addAdditionalMarker, error);
-            // trasa.setLatLngs([markers[0].getLatLng(), markers[1].getLatLng()]).redraw();
             fitMapBounds({ map, markers });
 
         }

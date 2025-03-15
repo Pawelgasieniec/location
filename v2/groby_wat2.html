@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>GROBY PROFESORÓW WAT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="read">
+            <h2 class="text-center">GROBY PROFESORÓW WAT<br>Część 2 przewodnika<br></h2>
+            <div class="text-center"><img src="groby_wat2/wat.png" alt="Pasja informatyki"><br><br>
+            </div>
+
+            Dla każdego grobu są dostępne:
+            <ul>
+                <li>życiorys osoby pochowanej - podlinkowane życiorysy są w większości w postaci .html, część jest
+                    na razie w formie .pdf, a trzy są podlinkowane z Wikipedii. Docelowo wszystkie będą w postaci
+                    .html z automatycznym tłumaczeniem i odczytywaniemm
+                <li>możliwość wyświetlenia trasy dotarcia do grobu od aktualnego położenia odwiedzającego cmentarz -
+                    w tym momencie współrzędne grobu są przybliżone i określone na podstawie mamy z dokładnością do
+                    kwatery
+                <li>możliwość zarejestrowania otwarcia strony z życiorysem z wyróżnieniem zrobienia tego przy grobie
+                    - w oparciu o obliczaną odległość miejsca grobu od położenia zwiedzającego cmentsarz.
+                    <ul>
+
+                        <div class="text-center"><b>Cmentarze w Warszawie</b></div>
+
+                        <div class="text-center">
+                            <table border="3" class="table-center">
+                            </table>
+                        </div>
+                        <br>
+
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="https://armiakrajowa.org.pl/tabliczki/js/behavior.js"></script>
+        <script type="text/javascript" src="../ttts/script.js?v=2"></script>
+        <script type="text/javascript" src="groby_wat2.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+
+</body>
+
+</html>

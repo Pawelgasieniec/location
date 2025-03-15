@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+<meta charset="UTF-8">
+<title>Rejestracja</title>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link href="rejestracja.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="map"
+        class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+        style="position: relative; width: 100%;">
+    </div>
+    <div>
+        <table border="1">
+            <th>
+                <tr>
+                    <td>Twoja lokalizacja</td>
+                    <td>Lokalizacja Grobu</td>
+                    <td>Odległość od grobu</td>
+                    <td>Max odległość</td>
+                    <td>Czy jesteś w pobliżu?</td>
+
+                </tr>
+            </th>
+            <tr>
+                <td id="userPosition"></td>
+                <td id="targetPosition"></td>
+                <td id="distance"></td>
+                <td id="maxDistance"></td>
+                <td id="areYouCloseEnough"></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <button>Zarejestruj</button>
+    </div>
+    <script>
+        function main() {
+            const queryString = window.location.search;
+            console.log(queryString);
+            setTargetCoordinatesFromQuery(queryString);
+            console.log("Set target to " + target.latitude + ' - ' + target.longitude);
+            navigator.geolocation.getCurrentPosition(addAdditionalMarker, error);
+            fitMapBounds({ map, markers });
+
+        }
+
+        document.addEventListener("DOMContentLoaded", main);
+
+    </script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="rejestracja.js"></script>
+
+
+</body>
+
+</html>

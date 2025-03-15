@@ -1,0 +1,33 @@
+.image-center {
+    display: block;
+    margin: auto;
+    width: 50%;
+
+}
+
+.text-center {
+    align-self: center;
+}
+
+.table-center {
+    align-self: center;
+    width: 80%;
+    table-layout: fixed;
+}
+
+td{
+    text-align: center;
+    padding: 0.51EM;
+}
+.td-center10{
+    text-align: center;
+    width: 10%;
+}
+.td-center20{
+    text-align: center;
+    width: 20%;
+}
+.td-center50{
+    text-align: center;
+    width: 50%;
+}
